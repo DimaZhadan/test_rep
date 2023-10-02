@@ -7,13 +7,24 @@ const res = [];
 
 buttonAnswers.forEach(e => {
    e.addEventListener('click', (i => res.push(e.innerText)))
+   e.removeEventListener('click', () => { });
 })
 
 modalNutton3.addEventListener("click", i => {
    i.preventDefault();
    console.log({ answer1: res[0], answer2: res[1], answer3: res[2], answer4: res[3] });
-   modalNutton3.removeEventListener('click', false);
-   buttonAnswers.removeEventListener('click', false);
+
+   const modalBody = document.querySelector('#p_modal3');
+   const modalBackdrop = document.querySelector('.modal-backdrop');
+   const divImgGift = document.querySelector('.div_img_gift');
+   const modalOpen = document.querySelector('.modal-open');
+
+   modalOpen.style.overflow = 'scroll';
+   modalBackdrop.style.display = 'none';
+   modalBody.style.display = 'none';
+   divImgGift.style.display = 'none';
+
+   modalNutton3.removeEventListener('click', () => { });
 })
 
 // coment section
@@ -70,13 +81,13 @@ publicButton.addEventListener('click', e => {
        </font>
        <u>
          <font style="vertical-align: inherit;">
-           <font style="vertical-align: inherit;">11 minutos antes</font>
+           <font style="vertical-align: inherit;">3 minutos antes</font>
          </font>
        </u>
      </small>
    </div>
    </div>`;
-   
+
    commentsFirstElem.before(div);
    commentText.value = '';
 
