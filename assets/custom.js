@@ -1,0 +1,120 @@
+// answers section
+
+const answers = document.querySelectorAll('.survey_button > font > font');
+const buttonAnswers = document.querySelectorAll('.survey_button');
+const modalNutton3 = document.querySelector('#p_modal_button3');
+const res = [];
+
+buttonAnswers.forEach(e => {
+   e.addEventListener('click', (i => res.push(e.innerText)))
+})
+
+modalNutton3.addEventListener("click", i => {
+   i.preventDefault();
+   console.log({ answer1: res[0], answer2: res[1], answer3: res[2], answer4: res[3] });
+   modalNutton3.removeEventListener('click');
+   buttonAnswers.removeEventListener('click');
+})
+
+// coment section
+
+const publicButton = document.querySelector('#coment-public');
+const commentText = document.querySelector('#exampleFormControlTextarea1');
+const commentsFirstElem = document.querySelector('#comment0');
+let resText;
+
+
+
+commentText.addEventListener('input', i => {
+   resText = commentText.value;
+})
+
+const commentSection = `<div class="comments" id="comment1" style="display:block">
+<div class="profile">
+  <img src="assets/4.webp">
+</div>
+<div class="comment-content">
+  <p class="name">
+    <font style="vertical-align: inherit;">
+      <font style="vertical-align: inherit;">FernandoPessoa</font>
+    </font>
+  </p>
+  <p>
+    <font style="vertical-align: inherit;">
+      <font style="vertical-align: inherit;">Eu gostei essas promoções</font>
+    </font>
+  </p>
+</div>
+<div class="clr"></div>
+<div class="comment-status">
+  <span>
+    <font style="vertical-align: inherit;">
+      <font style="vertical-align: inherit;">Curte·comente</font>
+    </font>
+    <img src="assets/like.png" width="15px" height="15px">
+    <font style="vertical-align: inherit;">
+      <font style="vertical-align: inherit;">9</font>
+    </font>
+  </span>
+  <small>
+    <font style="vertical-align: inherit;">
+      <font style="vertical-align: inherit;">·</font>
+    </font>
+    <u>
+      <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">11 minutos antes</font>
+      </font>
+    </u>
+  </small>
+</div>
+</div>`;
+
+publicButton.addEventListener('click', e => {
+   e.preventDefault();
+   if (!resText) {
+      return
+   }
+   let div = document.createElement('div');
+
+   div.innerHTML = `<div class="comments" id="comment1" style="display:block">
+   <div class="profile">
+     <img src="assets/anonim.png" width="60px" height="60px">
+   </div>
+   <div class="comment-content">
+     <p class="name">
+       <font style="vertical-align: inherit;">
+         <font style="vertical-align: inherit;">Anonimato</font>
+       </font>
+     </p>
+     <p>
+       <font style="vertical-align: inherit;">
+         <font style="vertical-align: inherit;">${resText}</font>
+       </font>
+     </p>
+   </div>
+   <div class="clr"></div>
+   <div class="comment-status">
+     <span>
+       <font style="vertical-align: inherit;">
+         <font style="vertical-align: inherit;">Curte·comente</font>
+       </font>
+       <img src="assets/like.png" width="15px" height="15px">
+       <font style="vertical-align: inherit;">
+         <font style="vertical-align: inherit;">9</font>
+       </font>
+     </span>
+     <small>
+       <font style="vertical-align: inherit;">
+         <font style="vertical-align: inherit;">·</font>
+       </font>
+       <u>
+         <font style="vertical-align: inherit;">
+           <font style="vertical-align: inherit;">11 minutos antes</font>
+         </font>
+       </u>
+     </small>
+   </div>
+   </div>`;
+   commentsFirstElem.prepend(div);
+   commentText.value = '';
+})
